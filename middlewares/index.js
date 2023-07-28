@@ -1,9 +1,5 @@
-const {
-  validateBodyAdd,
-  validateBodyFavoriteUpdate,
-} = require("./validateBody");
+const { validateBody } = require("./validateBody");
 
 module.exports = {
-  validateBodyAdd,
-  validateBodyFavoriteUpdate,
+  validateBody,
 };

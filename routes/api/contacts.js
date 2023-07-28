@@ -3,10 +3,7 @@ const express = require("express");
 const schemas = require("../../schemas/contacts.js");
 const { ctrlWrapper } = require("../../helpers");
 
-const {
-  validateBodyAdd,
-  validateBodyFavoriteUpdate,
-} = require("../../middlewares");
+const { validateBody } = require("../../middlewares");
 
 const {
   add,
@@ -23,11 +20,11 @@ router.get("/", ctrlWrapper(getAll));
 
 router.get("/:contactId", ctrlWrapper(getById));
 
-router.post("/", validateBodyAdd(schemas.addContactSchema), ctrlWrapper(add));
+router.post("/", validateBody(schemas.addContactSchema), ctrlWrapper(add));
 
 router.patch(
   "/:contactId/favorite",
-  validateBodyFavoriteUpdate(schemas.updateFavoriteSchema),
+  validateBody(schemas.updateFavoriteSchema),
   ctrlWrapper(updateFavorite)
 );
 
@@ -35,7 +32,7 @@ router.delete("/:contactId", ctrlWrapper(removeById));
 
 router.put(
   "/:contactId",
-  validateBodyAdd(schemas.addContactSchema),
+  validateBody(schemas.addContactSchema),
   ctrlWrapper(updateById)
 );
 
