@@ -9,6 +9,7 @@ const getById = require("../../controllers/contacts/getContactById");
 const add = require("../../controllers/contacts/add");
 const removeById = require("../../controllers/contacts/removeById");
 const updateById = require("../../controllers/contacts/updateById");
+const updateFavorite = require("../../controllers/contacts/updateFavorite");
 
 const router = express.Router();
 
@@ -17,6 +18,12 @@ router.get("/", ctrlWrapper(getAll));
 router.get("/:contactId", ctrlWrapper(getById));
 
 router.post("/", validateBodyAdd(schemas.addContactSchema), ctrlWrapper(add));
+
+router.patch(
+  "/:contactId/favorite",
+  validateBodyAdd(schemas.updateFavoriteSchema),
+  ctrlWrapper(updateFavorite)
+);
 
 router.delete("/:contactId", ctrlWrapper(removeById));
 
