@@ -10,6 +10,9 @@ const add = require("../../controllers/contacts/add");
 const removeById = require("../../controllers/contacts/removeById");
 const updateById = require("../../controllers/contacts/updateById");
 const updateFavorite = require("../../controllers/contacts/updateFavorite");
+const {
+  validateBodyFavoriteUpdate,
+} = require("../../middlewares/validateBody.js");
 
 const router = express.Router();
 
@@ -21,7 +24,7 @@ router.post("/", validateBodyAdd(schemas.addContactSchema), ctrlWrapper(add));
 
 router.patch(
   "/:contactId/favorite",
-  validateBodyAdd(schemas.updateFavoriteSchema),
+  validateBodyFavoriteUpdate(schemas.updateFavoriteSchema),
   ctrlWrapper(updateFavorite)
 );
 
