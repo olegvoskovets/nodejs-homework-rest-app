@@ -1,13 +1,13 @@
 const { RequestError } = require("../../helpers");
-const { removeContact } = require("../../models/contacts");
+const Contact = require("../../models/contact");
 
-const removeById = async (req, res, next) => {
+const removeById = async (req, res) => {
   const { contactId } = req.params;
-  const result = await removeContact(contactId);
+
+  const result = await Contact.findByIdAndRemove(contactId);
   if (!result) {
     throw RequestError(404, "Not found");
   }
   res.status(200).json(result);
 };
-
 module.exports = removeById;
