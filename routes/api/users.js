@@ -7,6 +7,7 @@ const {
   login,
   getCurrent,
   logOut,
+  subscription,
 } = require("../../controllers/users");
 
 const router = express.Router();
@@ -21,5 +22,12 @@ router.post("/login", validateBody(schemas.loginSchema), ctrlWrapper(login));
 router.get("/current", authenticate, ctrlWrapper(getCurrent));
 
 router.post("/logout", authenticate, ctrlWrapper(logOut));
+
+router.patch(
+  "/:id/subscription",
+  authenticate,
+  validateBody(schemas.subscriptionSchema),
+  ctrlWrapper(subscription)
+);
 
 module.exports = router;
