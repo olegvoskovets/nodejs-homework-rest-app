@@ -3,7 +3,7 @@ const Contact = require("../../models/contact");
 
 const getById = async (req, res) => {
   const { contactId } = req.params;
-  console.log(contactId);
+
   const contact = await Contact.findById(contactId);
 
   if (!contact) {
