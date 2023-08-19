@@ -9,6 +9,7 @@ const {
   logOut,
   subscription,
   updateAvatar,
+  verifyEmail,
 } = require("../../controllers/users");
 
 const router = express.Router();
@@ -37,5 +38,6 @@ router.patch(
   validateBody(schemas.subscriptionSchema),
   ctrlWrapper(subscription)
 );
+router.get("/verify/:verificationToken", ctrlWrapper(verifyEmail));
 
 module.exports = router;

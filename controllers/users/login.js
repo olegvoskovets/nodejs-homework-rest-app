@@ -6,8 +6,11 @@ const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user) {
-    throw RequestError(401, "Email or password invalid");
+  if (!user || user.verify) {
+    throw RequestError(
+      401,
+      "Email is wrong or not verify, or password invalid"
+    );
   }
 
   const passwordCompare = await bcrypt.compare(password, user.password);

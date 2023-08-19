@@ -12,7 +12,7 @@ const updateAvatar = async (req, res) => {
   const newNameFile = `${id}_${originalname}`;
   Jimp.read(tempUpload, function (err, test) {
     if (err) throw err;
-    console.log("tempSize", tempSize);
+    // console.log("tempSize", tempSize);
     test
       .resize(250, 250)
       .quality(50)
